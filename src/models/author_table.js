@@ -1,12 +1,12 @@
 import { Model } from 'sequelize';
 
 export default (sequelize, { STRING, INTEGER }) => {
-  class ProjectTable extends Model {
+  class AuthorTable extends Model {
     // static associate() {
     // }
   }
 
-  ProjectTable.init(
+  AuthorTable.init(
     {
       id: {
         allowNull: false,
@@ -14,11 +14,11 @@ export default (sequelize, { STRING, INTEGER }) => {
         type: INTEGER,
         autoIncrement: true,
       },
-      projects: {
+      Author: {
         type: STRING,
         allowNull: false,
       },
-      budget: {
+      Function: {
         type: STRING,
         allowNull: false,
       },
@@ -27,7 +27,7 @@ export default (sequelize, { STRING, INTEGER }) => {
         type: STRING,
         allowNull: false,
       },
-      completion: {
+      Employeed: {
         type: STRING,
         allowNull: false,
       },
@@ -39,10 +39,9 @@ export default (sequelize, { STRING, INTEGER }) => {
     },
     {
       sequelize,
-      modelName: 'ProjectTable',
-
+      modelName: 'AuthorTable',
       timestamps: true,
     }
   );
-  return ProjectTable;
+  return AuthorTable;
 };

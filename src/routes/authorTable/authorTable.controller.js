@@ -4,13 +4,13 @@ import models from '../../models';
 import { STATUS_CODES } from '../../utils/constants';
 import { BadRequestError, SuccessResponse } from '../../utils/helper';
 
-const { ProjectTable } = models;
+const { AuthorTable } = models;
 class UserController {
   static router;
 
   static getRouter() {
     this.router = express.Router();
-    this.router.get('/projecttable', this.list);
+    this.router.get('/authortable', this.list);
     this.router.get('/:id', this.getUserById);
     return this.router;
   }
@@ -25,7 +25,7 @@ class UserController {
 
       const offset = (page - 1) * pageSize;
 
-      const { rows: users, count } = await ProjectTable.findAndCountAll({
+      const { rows: users, count } = await AuthorTable.findAndCountAll({
         limit: pageSize,
         offset,
       });
@@ -54,7 +54,7 @@ class UserController {
         BadRequestError(`User id is required`, STATUS_CODES.INVALID_INPUT);
       }
 
-      const user = await ProjectTable.findOne({ where: { id } });
+      const user = await AuthorTable.findOne({ where: { id } });
       UserController.generatePreSignedUrl([user]);
       return SuccessResponse(res, user);
     } catch (e) {
