@@ -3,6 +3,7 @@ import acl from 'express-acl';
 import auth from '../middlewares/auth';
 import UserController from './user/user.controller';
 import ProjectTableController from './peojectTable/projectTable.controller';
+import AuthorTablecontroller from './authorTable/authorTable.controller';
 
 const router = express.Router();
 
@@ -12,6 +13,8 @@ const aclExcludedRoutes = [
   '/api/users/login',
   '/api/projects/projecttable',
   '/api/projects/:id',
+  '/api/authors/authortable',
+  '/api/authors/:id',
 
   /^\/api-docs\/.*/,
 ];
@@ -27,5 +30,7 @@ router.use(acl.authorize.unless({ path: aclExcludedRoutes }));
 
 router.use('/users', UserController.getRouter());
 router.use('/projects', ProjectTableController.getRouter());
+
+router.use('/authors', AuthorTablecontroller.getRouter());
 
 export default router;

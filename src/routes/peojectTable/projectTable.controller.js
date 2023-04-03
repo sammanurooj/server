@@ -17,8 +17,28 @@ class UserController {
 
   static async list(req, res, next) {
     try {
-      const users = await ProjectTable.findAll();
-      return SuccessResponse(res, users);
+      const {
+        query: { pagenumber, rowsPerPage },
+      } = req;
+      const page = parseInt(pagenumber, 10) || 1;
+      const pageSize = parseInt(rowsPerPage, 10) || 3;
+
+      const offset = (page - 1) * pageSize;
+
+      const { rows: users, count } = await ProjectTable.findAndCountAll({
+        limit: pageSize,
+        offset,
+      });
+
+      const totalPages = Math.ceil(count / pageSize);
+
+      return SuccessResponse(res, {
+        page,
+        pageSize,
+        totalPages,
+        totalCount: count,
+        users,
+      });
     } catch (e) {
       next(e);
     }
