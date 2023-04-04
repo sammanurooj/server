@@ -1,19 +1,15 @@
-import { generateHash } from '../utils/helper';
-
 export default {
   up: async (queryInterface) => {
     await queryInterface.bulkInsert(
       {
-        tableName: 'Users',
+        tableName: 'ApplicationUsers',
         schema: process.env.SCHEMA_NAME,
       },
       [
         {
-          username: 'iamauser',
-          email: 'admin@email.com',
-          password: generateHash('admin123'),
-          role: 'super',
-          isActive: true,
+          name: 'test',
+          email: 'test@gmail.com',
+          password: 'test123',
           createdAt: '2020-01-01T00:00:00.000Z',
           updatedAt: '2020-01-01T00:00:00.000Z',
         },
@@ -25,7 +21,7 @@ export default {
   down: async (queryInterface) => {
     await queryInterface.bulkDelete(
       {
-        tableName: 'Users',
+        tableName: 'ApplicationUsers',
         schema: process.env.SCHEMA_NAME,
       },
       null,
