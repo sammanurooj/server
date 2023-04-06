@@ -27,6 +27,19 @@ export default (sequelize, { STRING, INTEGER }) => {
         type: STRING,
         allowNull: false,
       },
+
+      Bio: {
+        type: STRING,
+        allowNull: true,
+      },
+      Phone: {
+        type: STRING,
+        allowNull: true,
+      },
+      Location: {
+        type: STRING,
+        allowNull: true,
+      },
     },
     {
       sequelize,
