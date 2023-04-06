@@ -27,6 +27,22 @@ module.exports = {
         allowNull: false
 
       },
+      Bio:{
+        type: Sequelize.STRING,
+        allowNull: true
+
+
+      },
+      Mobile:{
+        type: Sequelize.STRING,
+        allowNull: true
+
+
+      },
+      Location:{
+        type: Sequelize.STRING,
+        allowNull: true
+      },
       createdAt: {
         allowNull: false,
         type: Sequelize.DATE
