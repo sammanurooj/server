@@ -70,7 +70,10 @@ class UserController {
       if (!isPasswordMatch) {
         throw new Error(`Invalid email or password`);
       }
-      const token = jwt.sign({ id: user.id, email: user.email }, 'fsgekjiuyuhuh123345');
+      const token = jwt.sign(
+        { id: user.id, email: user.email, role: user.role },
+        'fsgekjiuyuhuh123345'
+      );
 
       return SuccessResponse(res, { token });
     } catch (e) {
@@ -96,7 +99,12 @@ class UserController {
       }
 
       const hashedPassword = await bcrypt.hash(password, 10);
-      const user = await ApplicationUser.create({ name, email, password: hashedPassword });
+      const user = await ApplicationUser.create({
+        name,
+        email,
+        password: hashedPassword,
+        role: 'user',
+      });
 
       return SuccessResponse(res, { user });
     } catch (e) {
