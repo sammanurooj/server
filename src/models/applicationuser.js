@@ -40,6 +40,10 @@ export default (sequelize, { STRING, INTEGER }) => {
         type: STRING,
         allowNull: true,
       },
+      role: {
+        type: STRING,
+        allowNull: true,
+      },
     },
     {
       sequelize,

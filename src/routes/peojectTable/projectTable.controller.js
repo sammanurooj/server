@@ -10,6 +10,7 @@ class UserController {
 
   static getRouter() {
     this.router = express.Router();
+
     this.router.get('/projecttable', this.list);
     this.router.get('/:id', this.getUserById);
     return this.router;

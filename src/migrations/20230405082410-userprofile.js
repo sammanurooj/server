@@ -17,6 +17,12 @@ module.exports = {
       'Location',
       { type: Sequelize.STRING, allowNull: true }
     );
+
+    await queryInterface.addColumn(
+      { schema: 'Test_Schema', tableName: 'ApplicationUsers' },
+      'group',
+      { type: Sequelize.STRING, allowNull: true }
+    );
   },
 
   down: async (queryInterface, Sequelize) => {
@@ -31,6 +37,10 @@ module.exports = {
     await queryInterface.removeColumn(
       { schema: 'Test_Schema', tableName: 'ApplicationUsers' },
       'Location'
+    );
+    await queryInterface.removeColumn(
+      { schema: 'Test_Schema', tableName: 'ApplicationUsers' },
+      'group'
     );
   },
 };
