@@ -1,4 +1,5 @@
 import express from 'express';
+import { Op } from 'sequelize';
 import models from '../../models';
 
 import { STATUS_CODES } from '../../utils/constants';
@@ -19,16 +20,25 @@ class UserController {
   static async list(req, res, next) {
     try {
       const {
-        query: { pagenumber, rowsPerPage },
+        query: { pagenumber, rowsPerPage, projectsearchQuery },
       } = req;
       const page = parseInt(pagenumber, 10) || 1;
       const pageSize = parseInt(rowsPerPage, 10) || 3;
 
       const offset = (page - 1) * pageSize;
 
+      const whereClause = projectsearchQuery
+        ? {
+          projects: {
+            [Op.iLike]: `%${projectsearchQuery}%`,
+          },
+        }
+        : {};
+
       const { rows: users, count } = await ProjectTable.findAndCountAll({
         limit: pageSize,
         offset,
+        where: whereClause,
       });
 
       const totalPages = Math.ceil(count / pageSize);

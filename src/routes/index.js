@@ -7,6 +7,9 @@ import AuthorTablecontroller from './authorTable/authorTable.controller';
 // import UserTablecontroller from './userTable/userTable.controller';
 import ApplicationUsercontroller from './applicationUser/applicationUsers.contoller';
 import UserProjectcontroller from './userProject/userProject.controller';
+import Cardcontoller from './marketingCard/marketingCard.controller';
+import Companyanalysis from './companyTable/companyTable.controller';
+import Notification from './notification/notification.controller';
 
 const router = express.Router();
 
@@ -46,5 +49,8 @@ router.use('/projects', ProjectTableController.getRouter());
 router.use('/authors', AuthorTablecontroller.getRouter());
 router.use('/users', ApplicationUsercontroller.getRouter());
 router.use('/userproject', UserProjectcontroller.getRouter());
+router.use('/analysiscard', Cardcontoller.getRouter());
+router.use('/analysiscompany', Companyanalysis.getRouter());
+router.use('/notification', Notification.getRouter());
 
 export default router;

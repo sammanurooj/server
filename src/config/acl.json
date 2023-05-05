@@ -176,6 +176,30 @@
           "POST"
         ],
         "action": "allow"
+      },
+      {
+        "resource": "analysiscard/Card",
+        "methods": [
+          "GET",
+          "PUT"
+        ],
+        "action": "allow"
+      },
+      {
+        "resource": "analysiscompany/company",
+        "methods": [
+          "GET",
+          "PUT"
+        ],
+        "action": "allow"
+      },
+      {
+        "resource": "notification/notifications",
+        "methods": [
+          "GET",
+          "PUT"
+        ],
+        "action": "allow"
       }
     ]
   }
